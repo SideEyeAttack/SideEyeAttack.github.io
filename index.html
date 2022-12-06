@@ -51,7 +51,7 @@
         color: #208799;
     }
 
-    h1, h2, h3 {
+    h1, h2{
         text-align: center;
     }
 
@@ -137,7 +137,7 @@
     }
 
     .fig-caption {
-        text-align: justify;
+        text-align: center;
         max-width: 100%;
 
     }
@@ -496,7 +496,7 @@
             <!-- Our research discovers how the rolling shutter and movable lens structures widely found in smartphone cameras modulate structure-borne sounds onto camera images, creating a point-of-view (POV) optical-acoustic side channel for acoustic eavesdropping. The movement of smartphone camera hardware leaks acoustic information because images unwittingly modulate ambient sound as imperceptible distortions. Our experiments find that the side channel is further amplified by intrinsic behaviors of Complementary metal-oxide–semiconductor (CMOS) rolling shutters and movable lenses such as in Optical Image Stabilization (OIS) and Auto Focus (AF). Our paper characterizes the limits of acoustic information leakage caused by structure-borne sound that perturbs the POV of smartphone cameras. In contrast with traditional optical-acoustic eavesdropping on vibrating objects, this side channel requires no line of sight and no object within the camera's field of view (images of a ceiling suffice). Our experiments test the limits of this side channel with a novel signal processing pipeline that extracts and recognizes the leaked acoustic information. Our evaluation with 10 smartphones on a spoken digit dataset reports 80.66%, 91.28% and 99.67% accuracies on recognizing 10 spoken digits, 20 speakers, and 2 genders respectively. We further systematically discuss the possible defense strategies and implementations. By modeling, measuring, and demonstrating the limits of acoustic eavesdropping from smartphone camera image streams, our contributions explain the physics-based causality and possible ways to reduce the threat on current and future devices. -->
             Side Eye is a vulnerability in smartphone camera hardware that allows adversaries to extract acoustic information from a stream of camera photos. 
             When sound energy vibrates the smartphone body, it shakes camera lenses and creates tiny Point-of-View (POV) variations in the camera images.
-            Aversaries can thus infer the sound information by analyzing the image POV variations. 
+            Adversaries can thus infer the sound information by analyzing the image POV variations. 
             Side Eye enables a family of sensor-based side channel attacks targeting acoustic eavesdropping even when smartphone microphone is disabled, 
             and does not require specific objects within the camera's field of view.  
             
@@ -578,7 +578,7 @@
 
                 <p id="topText" style="margin-top: 0.9%;" class="audio-caption">Original audio of speaker 56 (Female)</p>
             </div>
-    </div>
+    </div>（Left）
     
     <div class="col-2 text-center" style="margin-top: 1%;"> 
         <center><audio controls autoplay muted><source src="./audio/56_recover.wav" type="audio/mpeg"></audio></center>
@@ -645,15 +645,15 @@
             <p>
                 
                 Side Eye extracts the POV variations in image streams using a diffusion image registration-based algorithm. 
-                The extraction algirothm exploits <a href="#Processing Pipeline and ML Setup">the rolling shutter feature of smartphone cameras</a> to
-                increase the effecitve sample rates of recoverable acoustic signals from the image stream frame rate (~30Hz)
-                to the camera's rolling shutter frequncy (over 30k Hz). 
+                The extraction algorithm exploits <a href="#Processing Pipeline and ML Setup">the rolling shutter feature of smartphone cameras</a> to
+                increase the effective sample rates of recoverable acoustic signals from the image stream frame rate (~30Hz)
+                to the camera's rolling shutter frequency (over 30k Hz). 
                 The extracted raw signals are further cleaned up by a pre-processing pipeline, whose output are demonstrated by the <a href="#Recovered Signals">audio samples</a>. 
                 <br><br>
-                Side Eye  provides a deep learning model that can recognize the gender (2-class), identity (20-class), 
+                Side Eye  provides a HuBERT-based deep learning model that can recognize the gender (2-class), identity (20-class), 
                 and speaker independent spoken digits (10-class) with <strong>up to  99.67%, 91.28%, and 80.66% accuracies. </strong> 
                 <br><br>
-                Our evalutions show that the signal processing and deep learning pipeline allow adversaries to extract <strong>non-trivial acoustic information in various scenarios</strong>, including: (1) the speaker and phone are left on different desks; 
+                Our evaluations show that the signal processing and deep learning pipeline allow adversaries to extract <strong>non-trivial acoustic information in various scenarios</strong>, including: (1) the speaker and phone are left on different desks; 
                 (2) the speaker is left on the floor and the phone is in the pocket of a shirt or a backpack worn by a mannequin; 
                 (3) the speaker and phone are placed in two different rooms.
     
@@ -680,7 +680,7 @@
             <center><img width="100%" src="./img/scenarios.png"></center>
             <div class="overlayTextFullWide">
                 <br>
-                    <p id="topText" class="fig-caption"><font size="-1"><strong>Fig. 4:</strong> The optical-acoustic side channel of Side Eye allows adversaries to eavesdrop on acoustic inforamtion in various scenarios.
+                    <p id="topText" class="fig-caption"><font size="-1"><strong>Fig. 4:</strong> The optical-acoustic side channel of Side Eye allows adversaries to eavesdrop on acoustic information in various scenarios.
                     </font></p>
                 </div>
            
@@ -739,11 +739,11 @@
         <br>
         <p>
             
-            The culprits of Side Eye attacks are the <strong>rolling shutter archetectures</strong>  and  <strong>moveable lens structures</strong>  found in most smartphone cameras. <br><br>
+            The culprits of Side Eye attacks are the <strong>rolling shutter architectures</strong>  and  <strong>moveable lens structures</strong>  found in most smartphone cameras. <br><br>
             
-            Rolling shutters expose each row of the camera image sensor sequentially. This incrases the number of sampling points that adversaries have access to when performing computations on the image streams, increasing the amount of acoustic information leaked into images. Without exploiting rolling shutters, the sample rate of the acoustic signals that the adversaries can recover is the same as the frame rate of the image streams (often 30 Hz). By understanding and exploiting rolling shutters, the adversaries can increase the sample rate to the same as the rolling shutter frequncy, i.e., the row-wise sequential scanning frequncy (often over 30k Hz). <br> <br>
+            Rolling shutters expose each row of the camera image sensor sequentially. This increases the number of sampling points that adversaries have access to when performing computations on the image streams, increasing the amount of acoustic information leaked into images. Without exploiting rolling shutters, the sample rate of the acoustic signals that the adversaries can recover is the same as the frame rate of the image streams (often 30 Hz). By understanding and exploiting rolling shutters, the adversaries can increase the sample rate to the same as the rolling shutter frequency, i.e., the row-wise sequential scanning frequency (often over 30k Hz). <br> <br>
 
-            Moveable lenses amplify the camera's optical path variations when the phones are vibrated by sound energy. This increases the amplitude of the sound-induced POV variations in the images, leading to significantly higher signal-to-noise ratios for the adversaries. These moveable lens structures are employed by camera manufacturers for auto-focusing (AF) and optical image stabilization (OIS) functions. 
+            Moveable lenses amplify the camera's optical path variations when the phones are vibrated by sound energy. There exists relative movements between the camera lens and smartphone body when the smartphone body moves under sound waves. This increases the amplitude of the sound-induced POV variations in the images, leading to significantly higher signal-to-noise ratios for the adversaries. These moveable lens structures are employed by camera manufacturers for auto-focusing (AF) and optical image stabilization (OIS) functions. 
 
         </p>
     </div>
@@ -755,7 +755,7 @@
         <center><img width="100%" src="./img/RSOIS.png"></center>
         <div class="overlayTextFullWide">
             <br>
-                <p id="topText" class="fig-caption"><font size="-1"><strong>Fig. 5:</strong> (Left) Rolling shutter archetectures increase the effecitve sample rate of the audio signals extracted that can be extracted by the adversaries from image streams. (Right) Moveable len structures amplify the image variatios caused by sound-induced smartphone body vibrations. 
+                <p id="topText" class="fig-caption"><font size="-1"><strong>Fig. 5:</strong> (Left) Rolling shutter architectures increase the effective sample rate of the audio signals extracted that can be extracted by the adversaries from image streams. (Right) Moveable len structures amplify the image variation caused by sound-induced smartphone body vibrations. 
                 </font></p>
             </div>
        
@@ -777,39 +777,257 @@
 <hr>
 
 
+<h3>General Questions</h3>
+
+
 
 <div class="card">
-    <div id="question-1">
+    <div id="q-name">
         <h4>
-            <button class="TBA" data-toggle="collapse" data-target="#answer-1" >
-                What is your question?
+            <button class="TBA" data-toggle="collapse" data-target="#a-name" >
+                Why is it called Side Eye? 
             </button>
         </h4>
     </div>
 
-    <div id="answer-1" class="collapse">
+    <div id="a-name" class="collapse">
         <div class="card-body">
-            <p>sadadsadsadsdsad.</p>
+            <p> The camera senses nearby sounds without actually aiming at any objects generating or being vibrated by the sound waves because the sound waves vibrate the camera lens itself and cause point-of-view variations. We call this attack Side Eye because the camera is "seeing" something aside that is out of its field-of-view.  </p>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div id="q-devices">
+        <h4>
+            <button class="TBA" data-toggle="collapse" data-target="#a-devices" >
+                What devices are affected by  Side Eye? 
+            </button>
+        </h4>
+    </div>
+
+    <div id="a-devices" class="collapse">
+        <div class="card-body">
+            <p>Almost all modern smartphone cameras since rolling shutters and moveable lenses are ubiquitous nowadays. The rear (main) cameras are often more susceptible because their lenses can move more under ambient sound waves. In <a href="TBA">our research paper</a>, we demonstrated case studies on 10 smartphone models from Samsung, Google, and Apple.  </p>
         </div>
     </div>
 </div>
 
 
 <div class="card">
-    <div id="question-2">
+    <div id="q-threats">
         <h4>
-            <button class="TBA" data-toggle="collapse" data-target="#answer-2" >
-                What is your question?
+            <button class="TBA" data-toggle="collapse" data-target="#a-threats" >
+                When do I face such threats?
             </button>
         </h4>
     </div>
 
-    <div id="answer-2" class="collapse">
+    <div id="a-threats" class="collapse">
         <div class="card-body">
-            <p>sadadsadsadsdsad.</p>
+            <p> Side Eye attacks can happen if adversaries get access to a burst of camera photos (in another word, a muted video) from your smartphone when the smartphone camera recorded the photos near an electronic speaker playing audio. Such electronic speakers can be  standalone loudspeakers in the room or even the internal speakers of your TVs, laptops, and smartphones. The adversaries can be either passive eavesdroppers to whom you share your photos without knowing the photos could contain audio information, or active attackers  taking the form of smartphone applications that are granted permissions to use smartphone cameras.  </p>
         </div>
     </div>
+
 </div>
+
+
+<div class="card">
+    <div id="q-info">
+        <h4>
+            <button class="TBA" data-toggle="collapse" data-target="#a-info" >
+                What type of acoustic information can be leaked through smartphone images?
+            </button>
+        </h4>
+    </div>
+
+
+    <div id="a-info" class="collapse">
+        <div class="card-body">
+            <p> Almost all types of audio information (e.g., speech, music, etc.) from electronic speakers can be leaked with present-day smartphone cameras. Louder audio can be leaked more easily because it can induce larger POV variations in images. That said, we found audio played at normal and quiet conversation volumes (65 and 55 dB SPL) can also leak a significant amount of information when the acoustic signals are extracted and recognized by our signal processing and deep learning pipeline. 
+                <br><br>
+                
+            It is worth noting that our evaluations show Side Eye cannot be used to eavesdrop on audio from human speakers with present-day smartphone cameras yet because sound waves generated by human speakers cannot vibrate the lenses enough to generated distinguishable POV variations. Nevertheless, future cameras with higher pixel resolution and lower imaging noises might be able to capture human speech signals. 
+                
+            </p>
+        </div>
+    </div>
+
+
+</div>
+
+
+
+
+<div class="card">
+    <div id="q-avoid">
+        <h4>
+            <button class="TBA" data-toggle="collapse" data-target="#a-avoid" >
+                How can I avoid Side Eye attacks?
+            </button>
+        </h4>
+    </div>
+
+
+    <div id="a-avoid" class="collapse">
+        <div class="card-body">
+
+            <p> For smartphone users, the first thing is to realize that cameras can also leak audio. So when granting camera access to applications, keep in mind you could also be sharing some audio information to the applications even if you do not give them microphone access. Furthermore, you may want to be cautious when sharing muted videos to others, especially if they were taken near electronic speakers. You may also consider putting your cameras away from electronic speakers in the room to reduce the amount of audio leaked into camera images. A useful tip for assessing if there is a risk of Side Eye attack is to  put your hand on your smartphone and feel if there is sound-induced vibrations. If your hand feel vibrations caused by nearby electronic speakers, then there is a high risk your camera can also capture it.  </p>
+
+        </div>
+    </div>
+
+
+</div>
+
+
+
+<div class="card">
+    <div id="q-camfix">
+        <h4>
+            <button class="TBA" data-toggle="collapse" data-target="#a-camfix" >
+                Are there any fixes to cameras that can address this problem?
+            </button>
+        </h4>
+    </div>
+
+
+    <div id="a-camfix" class="collapse">
+        <div class="card-body">
+            <p> <a href="TBA">Our research paper</a> discussed in detail the possible hardware fixes that camera manufacturers may consider, including those aiming to address the rolling shutter problem and those aiming to address the movable lens problem respectively. We found preventing camera lenses from moving when it is not supposed to (i.e., when there is ambient sounds) is the most effective solution. From the user standpoint, this can be achieved by placing external magnets by the smartphone cameras to fix the position of the internal lenses whose supporting structures are also magnet-based. This is similar to how people tried to use magnets to <a href="https://www.youtube.com/watch?v=NuCA6lsFjRs">fix their shaking camera problems</a>. However, this temporary fix carried out by users may damage the cameras' internal mechanical and electrical structures.   
+            <br><br>
+
+            It is also worth pointing out that we haven't found any effective software fixes to this problem since the root cause is hardware-based. Software approaches such as using lower resolution images will greatly affect usability while only providing very limited decrease in the acoustic information captured by cameras. 
+            
+            </p>
+            
+
+        </div>
+    </div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<h3>More Technical Questions</h3>
+
+
+
+<div class="card">
+    <div id="q-global">
+        <h4>
+            <button class="TBA" data-toggle="collapse" data-target="#a-global" >
+                Will a global shutter prevents Side Eye attacks completely?
+            </button>
+        </h4>
+    </div>
+
+
+    <div id="a-global" class="collapse">
+        <div class="card-body">
+
+            <p> Unfortunately, it cannot. With a global shutter, the number of sampling points decreases by 1080x with 1080p-resolution images. But Side Eye's deep learning model is still able to exploit the few sampling points (with a sample rate same as the frame rate) to recover non-trivial information. For example, we found out the accuracies of recognizing 10-class spoken digits drop from ~80% to ~40% when the rolling shutter is replaced with a global shutter. Although rolling shutters capture additional inner-frame information, global shutters still capture inter-frame information. </p>
+
+        </div>
+    </div>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="card">
+    <div id="q-diff_motion">
+        <h4>
+            <button class="TBA" data-toggle="collapse" data-target="#a-diff_motion" >
+                How does Side Eye relate to previous acoustic eavesdropping attacks using smartphone motion sensors?
+            </button>
+        </h4>
+    </div>
+
+
+    <div id="a-diff_motion" class="collapse">
+        <div class="card-body">
+
+            <p> 
+
+                First, smartphone motion sensors measure smartphone vibrations caused by sound energy directly. Side Eye decodes such signals from videos based on understandings of how sound waves are modulated onto POV variations of camera images. 
+                <br><br>
+                
+                Second, most smartphone motion sensors have maximum sample rate of about 500 Hz, allowing adversaries to infer acoustic signals with a bandwidth of up to 250 Hz. Side Eye exploits the rolling shutter features of cameras and support over 30k Hz sample rate. We observe a signal bandwidth of up to 600 Hz so far. 
+                <br><br>
+                
+                Third, motion sensor data is rarely shared over internet. Side Eye studies another medium of information: camera images/muted videos, which are often shared by users themselves at will to others. This creates an orthogonal space of possible information leakage scenarios.  
+            </p>
+
+        </div>
+    </div>
+
+
+</div>
+
+
+
+
+
+<div class="card">
+    <div id="q-diff_cam">
+        <h4>
+            <button class="TBA" data-toggle="collapse" data-target="#a-diff_cam" >
+                How does Side Eye relate to previous research of audio measurement using cameras?
+            </button>
+        </h4>
+    </div>
+
+
+    <div id="a-diff_cam" class="collapse">
+        <div class="card-body">
+
+            <p> 
+                Previous research of using cameras to measure audio signals requires aiming  specialized high-quality cameras at objects that are either generating sounds (e.g., loudspeakers and humans) or vibrated by sound (e.g., lightweight chip bags). In short, they require specific objects in the camera field-of-view. Side Eye exploits the point-of-view variations caused by smartphone camera intrinsic physics. Furthermore, Side Eye provide signal extraction algorithms that are optimized for  extracting POV variations and a state-of-the-art deep learning model for recognizing the extracted signals which are difficult for humans to understand directly. 
+                
+            </p>
+
+        </div>
+    </div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
