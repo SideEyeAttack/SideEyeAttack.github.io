@@ -55,6 +55,8 @@
         text-align: center;
     }
 
+    
+
     h1 {
         font-size: 40px;
         font-weight: 500;
@@ -495,7 +497,9 @@
             Side Eye is a vulnerability in smartphone camera hardware that allows adversaries to extract acoustic information from a stream of camera photos. 
             When sound energy vibrates the smartphone body, it shakes camera lenses and creates tiny Point-of-View (POV) variations in the camera images.
             Aversaries can thus infer the sound information by analyzing the image POV variations. 
-            Side Eye enables a line of sensor-based side channel attacks targeting acoustic eavesdropping even when smartphone microphone is disabled. 
+            Side Eye enables a family of sensor-based side channel attacks targeting acoustic eavesdropping even when smartphone microphone is disabled, 
+            and does not require specific objects within the camera's field of view.  
+            
             Side Eye is to appear at <a href="https://www.ieee-security.org/TC/SP2023/">IEEE Symposium on Security and Privacy 2023</a> <br><br>
         </p>
     </div>
@@ -505,8 +509,8 @@
         <center><img width="80%" src="./img/proj_setup.png"></center>
 		<div class="overlayText">
                 <br>
-                <p id="topText" class="fig-caption"><font size="-1"><strong>Fig. 1</strong> 
-                    Illustration of using the Side Eye to extract acoustic information in the surroundings. 
+                <p id="topText" class="fig-caption"><font size="-1"><strong>Fig. 1:</strong> 
+                    Illustration of using  Side Eye to extract acoustic information produced by nearby electronic speakers. 
                     The POV-based side channel does not require any specific objects within the camera's field of view. Images of the ceiling or floor in the room suffice. </font></p>
             </div>
        
@@ -540,8 +544,8 @@
             The original audio is from the <a href="https://github.com/soerenab/AudioMNIST">AudioMNIST dataset</a>. 
 
             The recovered signals are extracted from image streams recorded by the rear camera of a Google Pixel 3 smartphone when 
-            a electronic speaker is playing the original audio at 85 dB. 
-
+            an electronic speaker is playing the original audio at 85 dB. 
+            <br><br>
             Although the recovered audio does not allow listeners to directly tell what exact words are spoken without any reference, 
             it preserves clear low-frequency tones that allow listeners to tell the gender and even identity of the speaker. 
             Listeners may also be able to differentiate between different words and sentences when given a closed set of possible candidates.
@@ -623,7 +627,7 @@
         <center><img width="80%" src="./img/digit.png"></center>
 		<div class="overlayText">
             <br>
-                <p id="topText" class="fig-caption"><font size="-1"><strong>Fig. 4</strong> The waveform and spectrogram of spoken digits "zero", "seven", and "nine". 
+                <p id="topText" class="fig-caption"><font size="-1"><strong>Fig. 2:</strong> The waveform and spectrogram of spoken digits "zero", "seven", and "nine". 
                     (Left) The original signals. (Right) The recovered signals from a 3.2s 30fps video with the optimized camera parameters.
                 </font></p>
             </div>
@@ -644,33 +648,55 @@
                 The extraction algirothm exploits <a href="#Processing Pipeline and ML Setup">the rolling shutter feature of smartphone cameras</a> to
                 increase the effecitve sample rates of recoverable acoustic signals from the image stream frame rate (~30Hz)
                 to the camera's rolling shutter frequncy (over 30k Hz). 
-                The extracted raw signals are further cleaned up by a pre-processing pipeline, whose output demonstrated by the <a href="#Recovered Signals">audio samples</a>. 
-
-                Side Eye further provides <a href="#Processing Pipeline and ML Setup">a deep learning model</a>
-                that can recognize the gender (2-class), identity (20-class), and speaker independent spoken digits (10-class) with up to  99.67%, 91.28%, and 80.66% accuracies.  
+                The extracted raw signals are further cleaned up by a pre-processing pipeline, whose output are demonstrated by the <a href="#Recovered Signals">audio samples</a>. 
+                <br><br>
+                Side Eye  provides a deep learning model that can recognize the gender (2-class), identity (20-class), 
+                and speaker independent spoken digits (10-class) with <strong>up to  99.67%, 91.28%, and 80.66% accuracies. </strong> 
+                <br><br>
+                Our evalutions show that the signal processing and deep learning pipeline allow adversaries to extract <strong>non-trivial acoustic information in various scenarios</strong>, including: (1) the speaker and phone are left on different desks; 
+                (2) the speaker is left on the floor and the phone is in the pocket of a shirt or a backpack worn by a mannequin; 
+                (3) the speaker and phone are placed in two different rooms.
     
-                
-                <!-- As shown in Figure 5, our attack system is a signal processing pipeline that consists of the following three stages. (1) Signal extraction. The stage implements the extraction algorithm shows in Section IV-C. It accepts videos collected by the malicious app and outputs (8 in the case of 1080p videos) channels of 1D signals. (2) Pre-processing. It performs noise reduction, liveness detection, trimming, low-pass filtering, and normalization to the channels. As shown in Figure 2, the extracted signals contain non-trivial but spectrally-static noise caused by different imaging and image registration noise. We thus first apply a background noise reduction step using the spectral-subtraction noise removal method. We then conduct a channel-wise amplitude-based liveness detection that determines the start and end index of the contained speech signals. Afterwards, we average the start and end indices of the channels and trim them to remove the parts without speech signals. We further apply a digital low pass filter with a cutoff frequency of 4kHz to get rid of the remaining high-frequency disturbances caused by camera imaging noise. Finally, we normalize the channels and pass them to the next stage. (3) Classification. Our classification stage implements a classification model that builds upon the Hidden-unit Bidirectional Encoder Representations from Transformers (HuBERT) large, which is introduced next. -->
             </p>
         </div>
 
 
-        <div style="margin-top: 10%;"> 
+        <div style="margin-top: 1%;"> 
             <figure style="width: 100%">
             <center><img width="100%" src="./img/pipeline_small.png"></center>
             <div class="overlayTextFullWide">
                 <br>
-                    <p id="topText" class="fig-caption"><font size="-1"><strong>Fig. 5</strong> Our signal processing pipeline that exploits the optical-acoustic side channel on smartphone cameras. The signal extraction stage extracts sound-induced signals from the videos recorded on smartphones. The pre-processing stage cleans up the signals and feeds them into the classification model, where the gender, speaker, and speech content are recognized.
+                    <p id="topText" class="fig-caption"><font size="-1"><strong>Fig. 3:</strong> Side Eye's signal processing and deep learning pipeline.
                     </font></p>
                 </div>
            
         </figure>
         </div>
+
+
+
+        <div style="margin-top: 5%;"> 
+            <figure style="width: 100%">
+            <center><img width="100%" src="./img/scenarios.png"></center>
+            <div class="overlayTextFullWide">
+                <br>
+                    <p id="topText" class="fig-caption"><font size="-1"><strong>Fig. 4:</strong> The optical-acoustic side channel of Side Eye allows adversaries to eavesdrop on acoustic inforamtion in various scenarios.
+                    </font></p>
+                </div>
+           
+        </figure>
+        </div>
+
+
+<!--         
         <div class="flex-row">
             <br>
             <p>
-                <strong>Deep Learning Model: </strong> <br><br>
+                <strong>Deep Learning Model: </strong> <br>
 
+                We 
+
+                <br><br>
                 <strong>Transfer Learning. </strong>HuBERT is a machine learning model that implements the concept of transfer learning. Essentially, the acoustic signals we extract are the embeddings of the original speech signals in the lens motion domain. Although building classification models in such a new signal domain often requires a significant amount of data to sufficiently sample the target domain, the adversary can overcome this challenge by utilizing transfer learning. Simply put, transfer learning allows the model to leverage the knowledge gained in the source domain (speech audio) and apply it to the tasks in the target domain (lens motion). Specifically, the original HuBERT model was pre-trained on 60,000 hours of speech derived from the LibriVox project and formalized in Libri-light, as well as 960 hours of speech from Librispeech. This large amount of incorporated knowledge enables the model to rapidly adapt to the lens motion distribution.
                     
                 <br><br>
@@ -696,9 +722,101 @@
                 </div>
            
         </figure>
-        </div>
+        </div> -->
     </section>
-    <section id="Q&A"/></section>
-    <section id="Defense"/></section>
+
+
+
+
+
+<section id="Vulnerability Causality"/>
+
+
+
+<h2>Vulnerability Causality</h2>
+    <hr>
+    <div class="flex-row">
+        <br>
+        <p>
+            
+            The culprits of Side Eye attacks are the <strong>rolling shutter archetectures</strong>  and  <strong>moveable lens structures</strong>  found in most smartphone cameras. <br><br>
+            
+            Rolling shutters expose each row of the camera image sensor sequentially. This incrases the number of sampling points that adversaries have access to when performing computations on the image streams, increasing the amount of acoustic information leaked into images. Without exploiting rolling shutters, the sample rate of the acoustic signals that the adversaries can recover is the same as the frame rate of the image streams (often 30 Hz). By understanding and exploiting rolling shutters, the adversaries can increase the sample rate to the same as the rolling shutter frequncy, i.e., the row-wise sequential scanning frequncy (often over 30k Hz). <br> <br>
+
+            Moveable lenses amplify the camera's optical path variations when the phones are vibrated by sound energy. This increases the amplitude of the sound-induced POV variations in the images, leading to significantly higher signal-to-noise ratios for the adversaries. These moveable lens structures are employed by camera manufacturers for auto-focusing (AF) and optical image stabilization (OIS) functions. 
+
+        </p>
+    </div>
+
+
+
+    <div style="margin-top: 5%;"> 
+        <figure style="width: 100%">
+        <center><img width="100%" src="./img/RSOIS.png"></center>
+        <div class="overlayTextFullWide">
+            <br>
+                <p id="topText" class="fig-caption"><font size="-1"><strong>Fig. 5:</strong> (Left) Rolling shutter archetectures increase the effecitve sample rate of the audio signals extracted that can be extracted by the adversaries from image streams. (Right) Moveable len structures amplify the image variatios caused by sound-induced smartphone body vibrations. 
+                </font></p>
+            </div>
+       
+    </figure>
+    </div>
+
+
+
+
+
+</section>
+
+
+
+
+
+<section id="Q&A"/>
+<h2>Frequently Asked Questions</h2>
+<hr>
+
+
+
+<div class="card">
+    <div id="question-1">
+        <h4>
+            <button class="TBA" data-toggle="collapse" data-target="#answer-1" >
+                What is your question?
+            </button>
+        </h4>
+    </div>
+
+    <div id="answer-1" class="collapse">
+        <div class="card-body">
+            <p>sadadsadsadsdsad.</p>
+        </div>
+    </div>
+</div>
+
+
+<div class="card">
+    <div id="question-2">
+        <h4>
+            <button class="TBA" data-toggle="collapse" data-target="#answer-2" >
+                What is your question?
+            </button>
+        </h4>
+    </div>
+
+    <div id="answer-2" class="collapse">
+        <div class="card-body">
+            <p>sadadsadsadsdsad.</p>
+        </div>
+    </div>
+</div>
+
+
+
+</section>
+
+
+
+
 </body>
 </html>
