@@ -421,7 +421,7 @@
 <body>
 <div class="flex-row">
     <div class="paper-title">
-        <h1 style="color:rgb(71, 132, 216)"><strong>Side Eye: Characterizing the Limits of POV Acoustic Eavesdropping from Smartphone Cameras with Rolling Shutters and Movable Lensess</strong></h1>
+        <h1 style="color:rgb(71, 132, 216)"><strong>Side Eye: Acoustic Eavesdropping from Smartphone Cameras</strong></h1>
     </div>
 
     <div id="authors">
@@ -478,20 +478,25 @@
     </div></div>
     <!-- The navigation menu -->
     <div class="navbar" style="height: 5px;">
-        <a class="active" href="#Abstract">Abstract</a>
-        <a href="#Recovered Signals">Recovered Signals</a>
-        <a href="#Processing Pipeline and ML Setup">Processing Pipeline and ML Setup</a>
-        <a href="#Experiments & Results">Experiments & Results</a>
-        <a href="#Defense">Defense</a>
+        <a class="active" href="#Overview">Overview</a>
+        <a href="#Recovered Signals">Audio Samples</a>
+        <a href="#Processing Pipeline and ML Setup">Signal Proc & Deep Learning</a>
+        <a href="#Vulnerability Causality">Vulnerability Causality</a>
+        <a href="#Q&A">Q&A</a>
     </div>
 
-    <section id="Abstract"/>
+    <section id="Overview"/>
     <hr>
     <div class="flex-row">
         <p>
             <br>
-            <strong>Abstarct:</strong> Our research discovers how the rolling shutter and movable lens structures widely found in smartphone cameras modulate structure-borne sounds onto camera images, creating a point-of-view (POV) optical-acoustic side channel for acoustic eavesdropping. The movement of smartphone camera hardware leaks acoustic information because images unwittingly modulate ambient sound as imperceptible distortions. Our experiments find that the side channel is further amplified by intrinsic behaviors of Complementary metal-oxide–semiconductor (CMOS) rolling shutters and movable lenses such as in Optical Image Stabilization (OIS) and Auto Focus (AF). Our paper characterizes the limits of acoustic information leakage caused by structure-borne sound that perturbs the POV of smartphone cameras. In contrast with traditional optical-acoustic eavesdropping on vibrating objects, this side channel requires no line of sight and no object within the camera's field of view (images of a ceiling suffice). Our experiments test the limits of this side channel with a novel signal processing pipeline that extracts and recognizes the leaked acoustic information. Our evaluation with 10 smartphones on a spoken digit dataset reports 80.66%, 91.28% and 99.67% accuracies on recognizing 10 spoken digits, 20 speakers, and 2 genders respectively. We further systematically discuss the possible defense strategies and implementations. By modeling, measuring, and demonstrating the limits of acoustic eavesdropping from smartphone camera image streams, our contributions explain the physics-based causality and possible ways to reduce the threat on current and future devices.
-                    To appear in <a href="https://www.ieee-security.org/TC/SP2023/">IEEE Symposium on Security and Privacy 2023<br><br></a>
+            <strong>Overview:</strong> 
+            <!-- Our research discovers how the rolling shutter and movable lens structures widely found in smartphone cameras modulate structure-borne sounds onto camera images, creating a point-of-view (POV) optical-acoustic side channel for acoustic eavesdropping. The movement of smartphone camera hardware leaks acoustic information because images unwittingly modulate ambient sound as imperceptible distortions. Our experiments find that the side channel is further amplified by intrinsic behaviors of Complementary metal-oxide–semiconductor (CMOS) rolling shutters and movable lenses such as in Optical Image Stabilization (OIS) and Auto Focus (AF). Our paper characterizes the limits of acoustic information leakage caused by structure-borne sound that perturbs the POV of smartphone cameras. In contrast with traditional optical-acoustic eavesdropping on vibrating objects, this side channel requires no line of sight and no object within the camera's field of view (images of a ceiling suffice). Our experiments test the limits of this side channel with a novel signal processing pipeline that extracts and recognizes the leaked acoustic information. Our evaluation with 10 smartphones on a spoken digit dataset reports 80.66%, 91.28% and 99.67% accuracies on recognizing 10 spoken digits, 20 speakers, and 2 genders respectively. We further systematically discuss the possible defense strategies and implementations. By modeling, measuring, and demonstrating the limits of acoustic eavesdropping from smartphone camera image streams, our contributions explain the physics-based causality and possible ways to reduce the threat on current and future devices. -->
+            Side Eye is a vulnerability in smartphone camera hardware that allows adversaries to extract acoustic information from a stream of camera photos. 
+            When sound energy vibrates the smartphone body, it shakes camera lenses and creates tiny Point-of-View (POV) variations in the camera images.
+            Aversaries can thus infer the sound information by analyzing the image POV variations. 
+            Side Eye enables a line of sensor-based side channel attacks targeting acoustic eavesdropping even when smartphone microphone is disabled. 
+            Side Eye is to appear at <a href="https://www.ieee-security.org/TC/SP2023/">IEEE Symposium on Security and Privacy 2023</a> <br><br>
         </p>
     </div>
 
@@ -500,13 +505,15 @@
         <center><img width="80%" src="./img/proj_setup.png"></center>
 		<div class="overlayText">
                 <br>
-                <p id="topText" class="fig-caption"><font size="-1"><strong>Fig. 1</strong> Illustration of the POV optical-acoustic side channel when a camera is recording a ceiling or floor. Adversaries can eavesdrop structure-borne sounds by extracting acoustic signals from artifacts of lens movement and rolling shutter patterns in smartphone cameras that depend on POV rather than objects within the field of view.</font></p>
+                <p id="topText" class="fig-caption"><font size="-1"><strong>Fig. 1</strong> 
+                    Illustration of using the Side Eye to extract acoustic information in the surroundings. 
+                    The POV-based side channel does not require any specific objects within the camera's field of view. Images of the ceiling or floor in the room suffice. </font></p>
             </div>
        
     </figure>
     </div>			
 	<center>			
-	<a href="https://arxiv.org/pdf/2210.09482.pdf" class="myButton">Read the Paper</a>
+	<a href="" class="myButton">Read the Paper</a>
 						
 			
 			
@@ -515,23 +522,33 @@
 		<div id="bibtex" style="margin-top: 1.5em;" class="collapse" align="left">
 			<pre style="white-space: pre">
 
-    @inproceedings{cao2023youcantseeme,
-    title={You Can’t See Me: Physical Removal Attacks on LiDAR-based Autonomous Vehicles Driving Frameworks},
-    author={Yulong Cao and S. Hrushikesh Bhupathiraju and Pirouz Naghavi and Takeshi Sugawara and Z. Morley Mao and Sara Rampazzi},
-    booktitle={32nd {USENIX} Security Symposium ({USENIX} Security 23)},
-    year={2023}
-    }
+    TBA
     </center>
 	</pre>					
 	</div>	
     </section>
 
+    <br>
+
     <section id="Recovered Signals"/>
-    <h2>Recovered Signals</h2>
+    <h2>Audio Samples</h2>
     <hr>
     <div class="flex-row">
         <p>
-            <br>Some of the original and side channel recovered signals are provided below. The original audio is from the <a href="https://github.com/soerenab/AudioMNIST">AudioMNIST dataset</a>. Recovered signals are recorded by the rear camera of Pixel 3 when a speaker is playing the original signals at 85 dB. Provided samples demonstrate the intelligibility of the recovered signals. Although the recovered audio is unintelligible in the sense that people cannot directly tell what exact words are spoken without any reference, it preserves clear low-frequency tones that allow listeners to tell the gender and even identity of the speaker, which already allows for a certain level of privacy leakage. this paper is centered on machine learning recognition in the hope to explore the limits of this side channel’s capacity. Listeners may also be able to differentiate between different words and sentences if they are given a closed set of possible candidates. Furthermore, the NIST-SNR and STOI intelligibility scores added in the paper show that our extracted signals have relatively good signal strength and some level of intelligibility compared to previous works’ signals.
+            <br>Some examples of the original and side channel-recovered audio signals are provided below. 
+
+            The original audio is from the <a href="https://github.com/soerenab/AudioMNIST">AudioMNIST dataset</a>. 
+
+            The recovered signals are extracted from image streams recorded by the rear camera of a Google Pixel 3 smartphone when 
+            a electronic speaker is playing the original audio at 85 dB. 
+
+            Although the recovered audio does not allow listeners to directly tell what exact words are spoken without any reference, 
+            it preserves clear low-frequency tones that allow listeners to tell the gender and even identity of the speaker. 
+            Listeners may also be able to differentiate between different words and sentences when given a closed set of possible candidates.
+
+            Side Eye further provides <a href="#Processing Pipeline and ML Setup">a deep learning model</a> that can recognize individual 
+            words with high accuracies. 
+
         </p>
     </div>
 
@@ -598,39 +615,16 @@
                 <p id="topText" style="margin-top: 0.9%;" class="audio-caption">Recovered audio of speaker 9 (Male)</p>
             </div>
     </div>
-	
-    <br>
-    
-    <div style="margin-top: 40%;"> 
-        <figure style="width: 100%">
-        <center><img width="80%" src="./img/chirp.png"></center>
-		<div class="overlayText">
-                
-                <p id="topText" class="fig-caption"><font size="-1"><strong>Fig. 2</strong> The recovered chirp signals (50-650 Hz in 7s) with different camera control parameters and a 30 fps frame rate. (a) Optimized parameters and 1 ms exposure time. (b) OIS is left on. (c) EIS is left on. (d) 10 ms exposure time. (e) OIS, EIS, AF are left on with 10 ms exposure time. (f) Recovered with the phone stock camera app without any optimization.
-                </font></p>
-            </div>
-       
-    </figure>
-    </div>
-    
-    <div style="margin-top: 10%;"> 
-        <figure style="width: 100%">
-        <center><img width="80%" src="./img/ort.png"></center>
-		<div class="overlayText">
-            <br>
-                <p id="topText" class="fig-caption"><font size="-1"><strong>Fig. 3</strong> The chirp signal recovered with different orientations of the phone with respect to the sound source (a) 0 degrees. (b) 45 degrees. (c) 90 degrees. We observe no significant variations for different orientation.
-                </font></p>
-            </div>
-       
-    </figure>
-    </div>
 
-    <div style="margin-top: 10%;"> 
+
+
+    <div style="margin-top: 40%;"> 
         <figure style="width: 100%">
         <center><img width="80%" src="./img/digit.png"></center>
 		<div class="overlayText">
             <br>
-                <p id="topText" class="fig-caption"><font size="-1"><strong>Fig. 4</strong> The waveform and spectrogram of spoken digits "zero", "seven", and "nine". (a) The original signals. (b) The recovered signals from a 3.2s 30fps video with the optimized camera parameters.
+                <p id="topText" class="fig-caption"><font size="-1"><strong>Fig. 4</strong> The waveform and spectrogram of spoken digits "zero", "seven", and "nine". 
+                    (Left) The original signals. (Right) The recovered signals from a 3.2s 30fps video with the optimized camera parameters.
                 </font></p>
             </div>
        
@@ -640,14 +634,27 @@
 
     <section id="Processing Pipeline and ML Setup"/>
 		<br>
-        <h2>Processing Pipeline and ML Setup</h2>
+        <h2>Signal Processing and Deep Learning</h2>
         <hr>
         <div class="flex-row">
             <br>
             <p>
-                <strong>Signal Processing Pipeline: </strong>As shown in Figure 5, our attack system is a signal processing pipeline that consists of the following three stages. (1) Signal extraction. The stage implements the extraction algorithm shows in Section IV-C. It accepts videos collected by the malicious app and outputs (8 in the case of 1080p videos) channels of 1D signals. (2) Pre-processing. It performs noise reduction, liveness detection, trimming, low-pass filtering, and normalization to the channels. As shown in Figure 2, the extracted signals contain non-trivial but spectrally-static noise caused by different imaging and image registration noise. We thus first apply a background noise reduction step using the spectral-subtraction noise removal method. We then conduct a channel-wise amplitude-based liveness detection that determines the start and end index of the contained speech signals. Afterwards, we average the start and end indices of the channels and trim them to remove the parts without speech signals. We further apply a digital low pass filter with a cutoff frequency of 4kHz to get rid of the remaining high-frequency disturbances caused by camera imaging noise. Finally, we normalize the channels and pass them to the next stage. (3) Classification. Our classification stage implements a classification model that builds upon the Hidden-unit Bidirectional Encoder Representations from Transformers (HuBERT) large, which is introduced next.
+                
+                Side Eye extracts the POV variations in image streams using a diffusion image registration-based algorithm. 
+                The extraction algirothm exploits <a href="#Processing Pipeline and ML Setup">the rolling shutter feature of smartphone cameras</a> to
+                increase the effecitve sample rates of recoverable acoustic signals from the image stream frame rate (~30Hz)
+                to the camera's rolling shutter frequncy (over 30k Hz). 
+                The extracted raw signals are further cleaned up by a pre-processing pipeline, whose output demonstrated by the <a href="#Recovered Signals">audio samples</a>. 
+
+                Side Eye further provides <a href="#Processing Pipeline and ML Setup">a deep learning model</a>
+                that can recognize the gender (2-class), identity (20-class), and speaker independent spoken digits (10-class) with up to  99.67%, 91.28%, and 80.66% accuracies.  
+    
+                
+                <!-- As shown in Figure 5, our attack system is a signal processing pipeline that consists of the following three stages. (1) Signal extraction. The stage implements the extraction algorithm shows in Section IV-C. It accepts videos collected by the malicious app and outputs (8 in the case of 1080p videos) channels of 1D signals. (2) Pre-processing. It performs noise reduction, liveness detection, trimming, low-pass filtering, and normalization to the channels. As shown in Figure 2, the extracted signals contain non-trivial but spectrally-static noise caused by different imaging and image registration noise. We thus first apply a background noise reduction step using the spectral-subtraction noise removal method. We then conduct a channel-wise amplitude-based liveness detection that determines the start and end index of the contained speech signals. Afterwards, we average the start and end indices of the channels and trim them to remove the parts without speech signals. We further apply a digital low pass filter with a cutoff frequency of 4kHz to get rid of the remaining high-frequency disturbances caused by camera imaging noise. Finally, we normalize the channels and pass them to the next stage. (3) Classification. Our classification stage implements a classification model that builds upon the Hidden-unit Bidirectional Encoder Representations from Transformers (HuBERT) large, which is introduced next. -->
             </p>
         </div>
+
+
         <div style="margin-top: 10%;"> 
             <figure style="width: 100%">
             <center><img width="100%" src="./img/pipeline_small.png"></center>
@@ -662,7 +669,7 @@
         <div class="flex-row">
             <br>
             <p>
-                <strong>Classification Model: </strong> <br><br>
+                <strong>Deep Learning Model: </strong> <br><br>
 
                 <strong>Transfer Learning. </strong>HuBERT is a machine learning model that implements the concept of transfer learning. Essentially, the acoustic signals we extract are the embeddings of the original speech signals in the lens motion domain. Although building classification models in such a new signal domain often requires a significant amount of data to sufficiently sample the target domain, the adversary can overcome this challenge by utilizing transfer learning. Simply put, transfer learning allows the model to leverage the knowledge gained in the source domain (speech audio) and apply it to the tasks in the target domain (lens motion). Specifically, the original HuBERT model was pre-trained on 60,000 hours of speech derived from the LibriVox project and formalized in Libri-light, as well as 960 hours of speech from Librispeech. This large amount of incorporated knowledge enables the model to rapidly adapt to the lens motion distribution.
                     
@@ -691,7 +698,7 @@
         </figure>
         </div>
     </section>
-    <section id="Experiments & Results"/></section>
+    <section id="Q&A"/></section>
     <section id="Defense"/></section>
 </body>
 </html>
