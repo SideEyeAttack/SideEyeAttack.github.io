@@ -397,6 +397,52 @@
     background-color:rgb(0, 120, 255);
     }
 
+    .button-30 {
+    align-items: center;
+    appearance: none;
+    background-color: #FCFCFD;
+    border-radius: 4px;
+    border-width: 0;
+    box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#D6D6E7 0 -3px 0 inset;
+    box-sizing: border-box;
+    color: #36395A;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: "JetBrains Mono",monospace;
+    height: 30px;
+    justify-content: center;
+    line-height: 1;
+    list-style: none;
+    overflow: hidden;
+    padding-left: 10px;
+    padding-right: 10px;
+    position: relative;
+    text-align: left;
+    text-decoration: none;
+    transition: box-shadow .15s,transform .15s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    will-change: box-shadow,transform;
+    font-size: 18px;
+    }
+
+    .button-30:focus {
+    box-shadow: #D6D6E7 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+    }
+
+    .button-30:hover {
+    box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #D6D6E7 0 -3px 0 inset;
+    transform: translateY(-2px);
+    }
+
+    .button-30:active {
+    box-shadow: #D6D6E7 0 3px 7px inset;
+    transform: translateY(2px);
+    }
+
+
     /* Add responsiveness - on screens less than 500px, make the navigation links appear on top of each other, instead of next to each other */
     @media screen and (max-width: 500px) {
     .navbar a {
@@ -784,7 +830,8 @@
 <div class="card">
     <div id="q-name">
         <h4>
-            <button class="TBA" data-toggle="collapse" data-target="#a-name" >
+            
+            <button class="button-30" data-toggle="collapse" data-target="#a-name" >
                 Why is it called Side Eye? 
             </button>
         </h4>
@@ -802,7 +849,7 @@
 <div class="card">
     <div id="q-devices">
         <h4>
-            <button class="TBA" data-toggle="collapse" data-target="#a-devices" >
+            <button class="button-30" data-toggle="collapse" data-target="#a-devices" >
                 What devices are affected by  Side Eye? 
             </button>
         </h4>
@@ -819,7 +866,7 @@
 <div class="card">
     <div id="q-threats">
         <h4>
-            <button class="TBA" data-toggle="collapse" data-target="#a-threats" >
+            <button class="button-30" data-toggle="collapse" data-target="#a-threats" >
                 When do I face such threats?
             </button>
         </h4>
@@ -837,7 +884,7 @@
 <div class="card">
     <div id="q-info">
         <h4>
-            <button class="TBA" data-toggle="collapse" data-target="#a-info" >
+            <button class="button-30" data-toggle="collapse" data-target="#a-info" >
                 What type of acoustic information can be leaked through smartphone images?
             </button>
         </h4>
@@ -864,7 +911,7 @@
 <div class="card">
     <div id="q-avoid">
         <h4>
-            <button class="TBA" data-toggle="collapse" data-target="#a-avoid" >
+            <button class="button-30" data-toggle="collapse" data-target="#a-avoid" >
                 How can I avoid Side Eye attacks?
             </button>
         </h4>
@@ -887,7 +934,7 @@
 <div class="card">
     <div id="q-camfix">
         <h4>
-            <button class="TBA" data-toggle="collapse" data-target="#a-camfix" >
+            <button class="button-30" data-toggle="collapse" data-target="#a-camfix" >
                 Are there any fixes to cameras that can address this problem?
             </button>
         </h4>
@@ -925,7 +972,7 @@
 <div class="card">
     <div id="q-global">
         <h4>
-            <button class="TBA" data-toggle="collapse" data-target="#a-global" >
+            <button class="button-30" data-toggle="collapse" data-target="#a-global" >
                 Will a global shutter prevents Side Eye attacks completely?
             </button>
         </h4>
@@ -952,7 +999,7 @@
 <div class="card">
     <div id="q-diff_motion">
         <h4>
-            <button class="TBA" data-toggle="collapse" data-target="#a-diff_motion" >
+            <button class="button-30" data-toggle="collapse" data-target="#a-diff_motion" >
                 How does Side Eye relate to previous acoustic eavesdropping attacks using smartphone motion sensors?
             </button>
         </h4>
@@ -986,7 +1033,7 @@
 <div class="card">
     <div id="q-diff_cam">
         <h4>
-            <button class="TBA" data-toggle="collapse" data-target="#a-diff_cam" >
+            <button class="button-30" data-toggle="collapse" data-target="#a-diff_cam" >
                 How does Side Eye relate to previous research of audio measurement using cameras?
             </button>
         </h4>
@@ -997,7 +1044,7 @@
         <div class="card-body">
 
             <p> 
-                Previous research of using cameras to measure audio signals requires aiming  specialized high-quality cameras at objects that are either generating sounds (e.g., loudspeakers and humans) or vibrated by sound (e.g., lightweight chip bags). In short, they require specific objects in the camera field-of-view. Side Eye exploits the point-of-view variations caused by smartphone camera intrinsic physics. Furthermore, Side Eye provide signal extraction algorithms that are optimized for  extracting POV variations and a state-of-the-art deep learning model for recognizing the extracted signals which are difficult for humans to understand directly. 
+                Previous research of using cameras to measure audio signals requires aiming specialized high-quality cameras at objects that are either generating sounds (e.g., loudspeakers and humans) or vibrated by sound (e.g., lightweight chip bags). In short, they require specific objects in the camera field-of-view. Side Eye exploits the point-of-view variations caused by smartphone camera intrinsic physics. Furthermore, Side Eye provide signal extraction algorithms that are optimized for  extracting POV variations and a state-of-the-art deep learning model for recognizing the extracted signals which are difficult for humans to understand directly. 
                 
             </p>
 
@@ -1008,6 +1055,29 @@
 </div>
 
 
+<div class="card">
+    <div id="q-diff_model">
+        <h4>
+            <button class="button-30" data-toggle="collapse" data-target="#a-diff_model" >
+                Can Side Eye only be carried out using the HuBERT large classifier model described in the paper?
+            </button>
+        </h4>
+    </div>
+
+
+    <div id="a-diff_model" class="collapse">
+        <div class="card-body">
+
+            <p> 
+                No, we were able to obtain the best results with the HuBERT classifier model, but we had relatively similar success with much smaller models such as ResNET-50 using spectrograms as inputs. When using different models for classification, improved performance is obtained when the model has been pre-trained on other and perhaps unrelated datasets such as ImageNet. Also, our experiments with different models indicate that using 8 extracted channels from the optical-acoustic side-channel outperforms using only one channel, so the classification model could potentially need to be modified to accept additional input channels.
+                
+            </p>
+
+        </div>
+    </div>
+
+
+</div>
 
 
 
